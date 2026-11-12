@@ -24,3 +24,13 @@ def divide(a, b):
     if b == 0:
         raise ZeroDivisionError("Деление на ноль невозможно")
     return a / b
+
+
+def power(a, b):
+    """Возводит число a в степень b.
+
+    Ноль в отрицательной степени вызывает исключение ZeroDivisionError.
+    """
+    if a == 0 and b < 0:
+        raise ZeroDivisionError("Ноль нельзя возвести в отрицательную степень")
+    return a ** b

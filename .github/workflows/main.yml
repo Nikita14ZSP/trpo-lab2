@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   tests:
-    name: Тесты Python
+    name: ${{ github.event_name == 'pull_request' && 'Тесты PR' || 'Тесты Python' }}
     runs-on: ubuntu-latest
     steps:
       - name: Получение кода
