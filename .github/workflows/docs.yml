@@ -1,0 +1,36 @@
+name: Документация
+
+on:
+  push:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  documentation:
+    name: Сборка документации
+    runs-on: ubuntu-latest
+    steps:
+      - name: Получение кода
+        uses: actions/checkout@v6
+
+      - name: Установка Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+
+      - name: Генерация HTML из описаний функций
+        run: |
+          python -B -m pydoc -w calculator
+          mkdir -p docs
+          mv calculator.html docs/calculator.html
+
+      - name: Сохранение документации
+        uses: actions/upload-artifact@v6
+        with:
+          name: documentation
+          path: docs/calculator.html
+          if-no-files-found: error
