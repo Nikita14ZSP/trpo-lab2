@@ -29,3 +29,14 @@ python3 -B -m unittest discover -s tests -v
 Workflow `.github/workflows/main.yml` запускается при отправке изменений
 в любую ветку и при создании или обновлении Pull Request в `main`.
 Он запускает тесты и приложение на Python 3.13.
+
+## Документация
+
+Описание функций находится в `docs/calculator.html`. Файл формируется
+стандартным модулем Python `pydoc` из описаний в `calculator.py`.
+
+Workflow «Документация» автоматически пересобирает HTML при отправке изменений
+и при обновлении Pull Request. Готовый файл можно скачать в разделе Artifacts
+соответствующего запуска GitHub Actions, артефакт `documentation`.
+
+Порядок локальной сборки приведён в `docs/README.md`.
