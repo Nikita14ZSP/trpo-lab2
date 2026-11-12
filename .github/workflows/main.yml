@@ -1,0 +1,29 @@
+name: Проверка проекта
+
+on:
+  push:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    name: Тесты Python
+    runs-on: ubuntu-latest
+    steps:
+      - name: Получение кода
+        uses: actions/checkout@v6
+
+      - name: Установка Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+
+      - name: Запуск тестов
+        run: python -B -m unittest discover -s tests -v
+
+      - name: Запуск приложения
+        run: python -B main.py
